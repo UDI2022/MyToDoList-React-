@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * id:プライマリキー
+     * user_id:外部キーとしてtodos.user_idがusers.idに関連付け
+     *  cascadeOnDelete():ユーザ削除の際に、todosも一緒に削除される
+     * title:todosのタイトルを保存するためのフィールド
+     * progress:todosの進行状況を保存する、デフォルトは0
+     */
+    public function up(): void
+    {
+        Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('title');
+            $table->integer('progress')->default(0);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('todos');
+    }
+};
