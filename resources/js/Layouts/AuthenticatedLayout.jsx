@@ -20,9 +20,17 @@ export default function Authenticated({ user, header, children }) {
                                 </Link>
                             </div>
 
+                            {/**
+                             * hidden:デフォルトで要素を非表示
+                             * space-x-8:X軸方向における各子要素（NavLink）のmarginを8に設定
+                             * sm:-my-px sm:ml-10 sm:flex ->画面サイズが小以上の場合に適用するスタイル
+                             */}
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
+                                </NavLink>
+                                <NavLink href={route('todo.index')} active={route().current('todo.index')}>
+                                    Todo
                                 </NavLink>
                             </div>
                         </div>
@@ -90,10 +98,19 @@ export default function Authenticated({ user, header, children }) {
                     </div>
                 </div>
 
+                
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
+                    {/**
+                     * pt-2:topのpaddingを2に設定
+                     * pb-3:Bottomのpaddingを2に設定
+                     * space-y-1:y軸に置ける各子要素（ResponsiveNavLink)のmaginを1に設定
+                     */}
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('todo.index')} active={route().current('todo.index')}>
+                            Todo
                         </ResponsiveNavLink>
                     </div>
 
