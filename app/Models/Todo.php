@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Todo extends Model
 {
+    use HasFactory;
     /**
      * $fillable():一括代入が可能なカラムを定義
      *
